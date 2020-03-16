@@ -45,7 +45,10 @@ function processMessage(originalMessage) {
     return "Hahahahahahahaha";
   }
 
-  if (message.includes("bot") && /ngu|gà|chó|cc|cl|đm|đcm|cút|óc/.test(str)) {
+  if (
+    message.includes("bot") &&
+    /ngu|gà|chó|cc|cl|đm|đcm|cút|óc/.test(message)
+  ) {
     return "Bot cũng biết buồn đó nha!!";
   }
 
