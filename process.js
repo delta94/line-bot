@@ -78,15 +78,20 @@ async function processMessage(originalMessage, source) {
       return "Chưa vô like bot thì đừng có gọi Bot, hứ!";
     }
 
-    const { data } = await axios.get(
-      `https://api.line.me/v2/bot/profile/${source.userId}`,
-      {
-        headers: { authorization: "Bearer " + process.env.ACCESS_TOKEN }
-      }
-    );
-    const name = data.displayName;
+    try {
+      const { data } = await axios.get(
+        `https://api.line.me/v2/bot/profile/${source.userId}`,
+        {
+          headers: { authorization: "Bearer " + process.env.ACCESS_TOKEN }
+        }
+      );
+      const name = data.displayName;
 
-    return `Dạ, ${name} gọi em ạ?`;
+      return `Dạ, ${name} gọi em ạ?`;
+    } catch (err) {
+      console.log(err);
+      return "Chưa vô like bot thì đừng có gọi Bot, hứ!";
+    }
   }
 
   if (message === "lol") {
@@ -113,15 +118,20 @@ async function processMessage(originalMessage, source) {
       return "Gọi gọi cái gì, chưa like bot thì không tương tác với bot được đâu đó nghen!";
     }
 
-    const { data } = await axios.get(
-      `https://api.line.me/v2/bot/profile/${source.userId}`,
-      {
-        headers: { authorization: "Bearer " + process.env.ACCESS_TOKEN }
-      }
-    );
-    const name = data.displayName;
+    try {
+      const { data } = await axios.get(
+        `https://api.line.me/v2/bot/profile/${source.userId}`,
+        {
+          headers: { authorization: "Bearer " + process.env.ACCESS_TOKEN }
+        }
+      );
+      const name = data.displayName;
 
-    return `${name} nói gì gì Bot dạ, hem hiểu?`;
+      return `${name} nói gì gì Bot dạ, hem hiểu?`;
+    } catch (err) {
+      console.log(err);
+      return "Gọi gọi cái gì, chưa like bot thì không tương tác với bot được đâu đó nghen!";
+    }
   }
 
   if (message.includes("nhậu")) {
