@@ -21,7 +21,10 @@ async function processMessage(originalMessage, source) {
 
     const push = require("./push");
     const time = message.replace("bot ơi gọi tao họp lúc ", "");
+    console.log(time);
     const duration = utils.getDurationHHmm(time);
+
+    console.log(`Scheduled ${userId} at ${duration}`);
 
     setTimeout(() => {
       push(source.userId, "Đi họp thôi bạn toy ơi!!");
@@ -30,8 +33,6 @@ async function processMessage(originalMessage, source) {
     setTimeout(() => {
       push(source.userId, "Lẹ lẹ!");
     }, duration + 3000);
-
-    console.log(`Scheduled ${userId} at ${duration}`);
 
     try {
       const { data } = await axios.get(
