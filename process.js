@@ -61,7 +61,7 @@ async function processMessage(originalMessage) {
     return "Giờ này đang mùa dịch corona, hông đi nhậu nha!!";
   }
 
-  if (message.includes("corona")) {
+  if (message === "corona") {
     const { data } = await axios.get(
       "https://coronavirus-19-api.herokuapp.com/countries"
     );
