@@ -33,20 +33,15 @@ async function processMessage(originalMessage, source) {
       push(source.userId, "Lẹ lẹ!");
     }, duration + 3000);
 
-    try {
-      const { data } = await axios.get(
-        `https://api.line.me/v2/bot/profile/${source.userId}`,
-        {
-          headers: { authorization: "Bearer " + process.env.ACCESS_TOKEN }
-        }
-      );
+    const { data } = await axios.get(
+      `https://api.line.me/v2/bot/profile/${source.userId}`,
+      {
+        headers: { authorization: "Bearer " + process.env.ACCESS_TOKEN }
+      }
+    );
 
-      const name = data.displayName;
-      return `Ok, noted nha ${name}`;
-    } catch (err) {
-      console.log(err);
-      return `Ok, noted`;
-    }
+    const name = data.displayName;
+    return `Ok, noted nha ${name}`;
   }
 
   if (message === "danh sách quán") {
