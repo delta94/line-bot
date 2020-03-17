@@ -73,7 +73,7 @@ async function processMessage(originalMessage, source) {
     return `Mình đi ăn ${item} nha!`;
   }
 
-  if (message === "bot") {
+  if (message === "bot" || message === "jarvis") {
     if (!source.userId) {
       return "Chưa vô like bot thì đừng có gọi Bot, hứ!";
     }
