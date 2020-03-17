@@ -66,8 +66,8 @@ async function processMessage(originalMessage) {
       "https://coronavirus-19-api.herokuapp.com/countries"
     );
     const vietnam = data.find(e => e.country === "Vietnam");
-    const { cases, todayCases } = vietnam;
-    return `Tổng số ca là ${cases}, số ca mới hôm nay là ${todayCases}`;
+    const { cases, todayCases, deaths, critical } = vietnam;
+    return `Tổng số ca là ${cases}, số ca mới hôm nay là ${todayCases}, số người chết là ${deaths}, số người nguy kịch là ${critical}.`;
   }
 
   return null;

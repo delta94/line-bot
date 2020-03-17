@@ -27,7 +27,8 @@ function handleEvent(event) {
     return Promise.resolve(null);
   }
 
-  console.info(event.source.userId);
+  console.log(event.source);
+  console.info("User: ", event.source.userId);
   console.log(event.message.text);
 
   processMessage(event.message.text)
