@@ -14,4 +14,16 @@ function shuffle(array) {
   return array;
 }
 
-module.exports = { shuffle };
+function getDurationHHmm(str) {
+  if (!str || !str.includes(":")) {
+    return -1;
+  }
+
+  const moment = require("moment");
+  const scheduled = moment(str, "HH:mm");
+  const now = moment(new Date());
+  const duration = moment.duration(scheduled.diff(now)).asMilliseconds();
+  return duration;
+}
+
+module.exports = { shuffle, getDurationHHmm };

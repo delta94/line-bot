@@ -27,11 +27,7 @@ function handleEvent(event) {
     return Promise.resolve(null);
   }
 
-  console.log(event.source);
-  console.info("User: ", event.source.userId);
-  console.log(event.message.text);
-
-  processMessage(event.message.text)
+  processMessage(event.message.text, event.source)
     .then(responseMessage => {
       if (responseMessage) {
         return client.replyMessage(event.replyToken, {
