@@ -10,12 +10,11 @@ let memo = {};
 // Todo: Add persistence feature: Sync / Save items and queues to hard disk
 
 async function processMessage(originalMessage, source) {
+  console.log(source);
+  console.log(originalMessage);
   const message = originalMessage.trim().toLowerCase();
 
   if (message.startsWith("bot ơi gọi tao họp lúc ")) {
-    console.log(source);
-    console.log(originalMessage);
-
     if (!source.userId) {
       return "Chưa vô like bot thì đừng có gọi Bot, hứ!";
     }
@@ -34,15 +33,20 @@ async function processMessage(originalMessage, source) {
 
     console.log(`Scheduled ${userId} at ${duration}`);
 
-    const { data } = await axios.get(
-      `https://api.line.me/v2/bot/profile/${source.userId}`,
-      {
-        headers: { authorization: "Bearer " + process.env.ACCESS_TOKEN }
-      }
-    );
-    const name = data.displayName;
+    try {
+      const { data } = await axios.get(
+        `https://api.line.me/v2/bot/profile/${source.userId}`,
+        {
+          headers: { authorization: "Bearer " + process.env.ACCESS_TOKEN }
+        }
+      );
 
-    return `Ok, noted nha ${name}`;
+      const name = data.displayName;
+      return `Ok, noted nha ${name}`;
+    } catch (err) {
+      console.log(err);
+      return `Ok, noted`;
+    }
   }
 
   if (message === "danh sách quán") {
