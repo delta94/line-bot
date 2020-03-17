@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 async function getCorona() {
   const { data } = await axios.get(
     "https://coronavirus-19-api.herokuapp.com/countries"
