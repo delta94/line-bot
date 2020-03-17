@@ -23,25 +23,30 @@ async function processMessage(originalMessage, source) {
     const time = message.replace("bot ơi gọi tao họp lúc ", "");
     const duration = utils.getDurationHHmm(time);
 
-    console.log(`Scheduled ${userId} at ${duration}`);
+    try {
+      console.log(`Scheduled ${userId} at ${duration}`);
 
-    setTimeout(() => {
-      push(source.userId, "Đi họp thôi bạn toy ơi!!");
-    }, duration);
+      setTimeout(() => {
+        push(source.userId, "Đi họp thôi bạn toy ơi!!");
+      }, duration);
 
-    setTimeout(() => {
-      push(source.userId, "Lẹ lẹ!");
-    }, duration + 3000);
+      setTimeout(() => {
+        push(source.userId, "Lẹ lẹ!");
+      }, duration + 3000);
 
-    const { data } = await axios.get(
-      `https://api.line.me/v2/bot/profile/${source.userId}`,
-      {
-        headers: { authorization: "Bearer " + process.env.ACCESS_TOKEN }
-      }
-    );
+      const { data } = await axios.get(
+        `https://api.line.me/v2/bot/profile/${source.userId}`,
+        {
+          headers: { authorization: "Bearer " + process.env.ACCESS_TOKEN }
+        }
+      );
 
-    const name = data.displayName;
-    return `Ok, noted nha ${name}`;
+      const name = data.displayName;
+      return `Ok, noted nha ${name}`;
+    } catch (err) {
+      console.log(err);
+      return "Lỗi";
+    }
   }
 
   if (message === "danh sách quán") {
