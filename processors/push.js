@@ -7,12 +7,12 @@ const client = new Client(config);
 
 function push(userId, message) {
   try {
-    client.pushMessage(userId, {
+    return client.pushMessage(userId, {
       type: "text",
       text: message
     });
   } catch (err) {
-    console.error(err);
+    throw err;
   }
 }
 

@@ -5,13 +5,17 @@ const config = {
 };
 const client = new Client(config);
 
-const truanayangiGroup = "C62ba46d6214c2bbbc70cb953913d3fbd";
-const message = process.argv.slice(2).join(" ");
+const message = "SOMETHING";
 
-// client.pushMessage(truanayangiGroup, {
-//   type: "text",
-//   text: message
-// });
+const IDS = {
+  "trua-nay-an-gi": "C62ba46d6214c2bbbc70cb953913d3fbd",
+  "xiaolin": "C555f4fde4b462dd2b5a00454930135bc"
+};
+
+client.pushMessage(IDS["trua-nay-an-gi"], {
+  type: "text",
+  text: message || process.argv.slice(2).join(" ")
+});
 
 // client.pushMessage(truanayangiGroup, {
 //   type: "sticker",
