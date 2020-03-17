@@ -45,7 +45,7 @@ async function processMessage(originalMessage, source) {
       return `Ok, noted nha ${name}`;
     } catch (err) {
       console.log(err);
-      return err.toString();
+      return "Chưa vô like bot thì đừng có gọi Bot, hứ!";
     }
   }
 
