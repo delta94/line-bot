@@ -30,7 +30,7 @@ function handleEvent(event) {
   console.info(event.source.userId);
   console.log(event.message.text);
 
-  const responseMessage = processMessage(event.message.text);
+  const responseMessage = await processMessage(event.message.text);
 
   if (responseMessage) {
     return client.replyMessage(event.replyToken, {

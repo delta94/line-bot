@@ -1,3 +1,4 @@
+const axios = require("axios");
 const utils = require("./utils");
 
 let items = ["Phố Thị", "UpTown", "Cơm 27K"];
@@ -6,7 +7,7 @@ let queues = [];
 // Todo: Improve Shuffle: Random Shuffle when reinit the queue is not so efficient
 // Todo: Add persistence feature: Sync / Save items and queues to hard disk
 
-function processMessage(originalMessage) {
+async function processMessage(originalMessage) {
   const message = originalMessage.trim().toLowerCase();
 
   if (message === "danh sách quán") {
@@ -58,6 +59,15 @@ function processMessage(originalMessage) {
 
   if (message.includes("nhậu")) {
     return "Giờ này đang mùa dịch corona, hông đi nhậu nha!!";
+  }
+
+  if (message.includes("corona")) {
+    const { data } = await axios.get(
+      "https://coronavirus-19-api.herokuapp.com/countries"
+    );
+    const vietnam = data.filter(e => e.country === "Vietnam");
+    const { cases, todayCases } = vietnam;
+    return `Tổng số ca là ${cases}, số ca mới hôm nay là ${todayCases}`;
   }
 
   return null;
