@@ -65,7 +65,7 @@ async function processMessage(originalMessage) {
     const { data } = await axios.get(
       "https://coronavirus-19-api.herokuapp.com/countries"
     );
-    const vietnam = data.filter(e => e.country === "Vietnam");
+    const vietnam = data.find(e => e.country === "Vietnam");
     const { cases, todayCases } = vietnam;
     return `Tổng số ca là ${cases}, số ca mới hôm nay là ${todayCases}`;
   }
