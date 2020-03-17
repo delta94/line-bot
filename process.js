@@ -32,6 +32,8 @@ async function processMessage(originalMessage, source) {
       push(source.userId, "Lẹ lẹ!");
     }, duration + 3000);
 
+    console.log(`Scheduled ${userId} at ${duration}`);
+
     const { data } = await axios.get(
       `https://api.line.me/v2/bot/profile/${source.userId}`,
       {

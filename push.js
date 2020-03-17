@@ -6,10 +6,14 @@ const config = {
 const client = new Client(config);
 
 function push(userId, message) {
-  client.pushMessage(userId, {
-    type: "text",
-    text: message
-  });
+  try {
+    client.pushMessage(userId, {
+      type: "text",
+      text: message
+    });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 module.exports = push;
