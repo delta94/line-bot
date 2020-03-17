@@ -21,7 +21,6 @@ async function processMessage(originalMessage, source) {
 
     const push = require("./push");
     const time = message.replace("bot ơi gọi tao họp lúc ", "");
-    console.log(time);
     const duration = utils.getDurationHHmm(time);
 
     console.log(`Scheduled ${userId} at ${duration}`);

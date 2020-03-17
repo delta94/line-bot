@@ -19,6 +19,7 @@ function getDurationHHmm(str) {
   const scheduled = moment(str, "HH:mm");
   const now = moment(new Date());
   const duration = moment.duration(scheduled.diff(now)).asMilliseconds();
+  console.log("1234", duration);
   return duration;
 }
 
