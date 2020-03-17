@@ -24,7 +24,7 @@ async function processMessage(originalMessage, source) {
     const duration = utils.getDurationHHmm(time);
 
     try {
-      console.log(`Scheduled ${userId} at ${duration}`);
+      console.log(`Scheduled ${source.userId} at ${duration}`);
 
       setTimeout(() => {
         push(source.userId, "Đi họp thôi bạn toy ơi!!");
