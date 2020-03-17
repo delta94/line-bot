@@ -30,16 +30,18 @@ function handleEvent(event) {
   console.info(event.source.userId);
   console.log(event.message.text);
 
-  const responseMessage = await processMessage(event.message.text);
+  processMessage(event.message.text)
+    .then(responseMessage => {
+      if (responseMessage) {
+        return client.replyMessage(event.replyToken, {
+          type: "text",
+          text: responseMessage
+        });
+      }
 
-  if (responseMessage) {
-    return client.replyMessage(event.replyToken, {
-      type: "text",
-      text: responseMessage
-    });
-  }
-
-  return Promise.resolve(null);
+      return Promise.resolve(null);
+    })
+    .catch(() => Promise.resolve(null));
 }
 
 app.use((err, req, res, next) => {
