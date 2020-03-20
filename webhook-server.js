@@ -50,3 +50,6 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () =>
   console.log(`Webhook server is listening on port ${PORT}.`)
 );
+
+const coronaInterval = require("./processors/coronaReal");
+coronaInterval();

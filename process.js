@@ -30,7 +30,7 @@ async function processMessage(originalMessage, source) {
 
   if (message === "ăn gì" || message === "quán nào" || message === "đổi quán") {
     const item = angi.get();
-    return `Mình đi ăn ${item} nha!`;
+    return `Mình đi ăn ${item} nha mọi người!`;
   }
 
   if (message.startsWith("bot ơi gọi tao họp lúc ")) {
@@ -41,50 +41,37 @@ async function processMessage(originalMessage, source) {
 
       return `Ok, noted nha ${name}`;
     } catch (err) {
-      return "Chưa vô like bot thì đừng có gọi Bot, hứ!";
+      return "Chưa vô add friend với Brown thì đừng có gọi, hứ!";
     }
   }
 
-  if (message === "bot" || message === "jarvis") {
+  if (message === "bot" || message === "jarvis" || message === "brown") {
     try {
       const name = await utils.getName(source.userId);
       return `Dạ, ${name} gọi em ạ?`;
     } catch(err) {
-      return "Gọi gọi cái gì, chưa like bot thì không tương tác với bot được đâu đó nghen!";
+      return "Gọi gọi cái gì, chưa add friend với Brown thì không tương tác với Brown được đâu đó nghen!";
     }
   }
 
   if (message === "lol") {
-    return "Lo code đi, chat chat cái gì?";
-  }
-
-  if (message === "haha") {
-    return "Hahahahahahahaha";
+    return "Lo code đi, chat chit cái gì?";
   }
 
   if (message === "corona") {
     const { cases, todayCases, deaths, critical } = await getCorona();
-    return `Tổng số ca là ${cases}, số ca mới hôm nay là ${todayCases}, số người chết là ${deaths}, số người nguy kịch là ${critical}.`;
+    return `Tổng số ca nhiễm Corona ở Việt Nam là ${cases}, số ca mới hôm nay là ${todayCases}, số người chết là ${deaths}, số người nguy kịch là ${critical}.`;
   }
 
   if (
-    message.includes("bot") &&
+    (message.includes("bot") || message.includes("brown")) &&
     /ngu|gà|chó|cc|cl|đm|đcm|cút|óc/.test(message)
   ) {
     try {
       const name = await utils.getName(source.userId);
-      return `Gì vậy ${name}, Bot cũng biết buồn đó nha!!`;
+      return `Sao chửi Brown vậy ${name}, Brown cũng biết buồn đó nha!!`;
     } catch(err) {
-      return "Gọi gọi cái gì, chưa like bot thì không tương tác với bot được đâu đó nghen!";
-    }
-  }
-
-  if (message.includes("bot")) {
-    try {
-      const name = await utils.getName(source.userId);
-      return `${name} nói gì gì Bot dạ, hem hiểu?`;
-    } catch(err) {
-      return "Gọi gọi cái gì, chưa like bot thì không tương tác với bot được đâu đó nghen!";
+      return `Đừng chửi em, vô add friend với em đi!!`;
     }
   }
 
