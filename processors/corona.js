@@ -3,6 +3,27 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
 async function getCorona() {
+  const { data } = await axios.get("https://news.zing.vn/dich-viem-phoi-corona.html?");
+  const dom = new JSDOM(data);
+  const scripts = dom.window.document.querySelectorAll("script");
+  for (let i = 0; i < scripts.length; i++) {
+    if (scripts[i] && scripts[i].innerHTML) {
+      if (scripts[i].innerHTML.includes("window.coronaData")) {
+        const scriptContent = scripts[i].innerHTML.trim();
+        const jsonString = scriptContent.replace("window.coronaDataGlobal = ", "").slice(0, -1);
+        const json = JSON.parse(jsonString);
+
+        const source = json.source_vn;
+        const vietnam = json.countries.find(e => e.country === 'vn');
+        const cases = vietnam.cases;
+
+        return { cases, source };
+      }
+    }
+  }
+}
+
+async function getCoronaWorld() {
   let cases = 0;
   let todayCases = 0;
 

@@ -1,12 +1,12 @@
 const getCorona = require("./corona");
 
-let currentCases = 100;
+let currentCases = 112;
 
 async function coronaLive() {
-  const { cases } = await getCorona();
+  const { cases, source } = await getCorona();
   if (cases > currentCases) {
     const push = require("./push");
-    push("C62ba46d6214c2bbbc70cb953913d3fbd", `Việt Nam có thêm ca nhiễm Corona mới mọi người ơi, tổng số cases là ${cases}!!`);
+    push("C62ba46d6214c2bbbc70cb953913d3fbd", `Việt Nam có thêm ca nhiễm Corona mới mọi người ơi, tổng số cases là ${cases}!! ${source}.`);
     currentCases = cases;
   }
 }

@@ -59,8 +59,8 @@ async function processMessage(originalMessage, source) {
   }
 
   if (message === "corona") {
-    const { cases, todayCases } = await getCorona();
-    return `Tổng số ca nhiễm Corona ở Việt Nam là ${cases}, số ca mới hôm nay là ${todayCases}.`;
+    const { cases, source } = await getCorona();
+    return `Tổng số ca nhiễm Corona ở Việt Nam là ${cases}. ${source}.`;
   }
 
   if (
