@@ -53,3 +53,6 @@ app.listen(PORT, () =>
 
 const coronaInterval = require("./processors/coronaReal");
 coronaInterval();
+
+const executeCron = require("./processors/cron");
+executeCron();

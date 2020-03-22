@@ -50,12 +50,8 @@ async function processMessage(originalMessage, source) {
       const name = await utils.getName(source.userId);
       return `Dạ, ${name} gọi em ạ?`;
     } catch(err) {
-      return "Gọi gọi cái gì, chưa add friend với Brown thì không tương tác với Brown được đâu đó nghen!";
+      return null;
     }
-  }
-
-  if (message === "lol") {
-    return "Lo code đi, chat chit cái gì?";
   }
 
   if (message === "corona") {
