@@ -41,7 +41,7 @@ async function getCorona() {
     }
   }
 
-  return { cases, source: "Nguồn: WorldOMeters.", todayCases }
+  return { cases, source: "Nguồn: WorldOMeters", todayCases }
 }
 
 async function getCoronaLegacy() {
