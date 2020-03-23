@@ -2,7 +2,7 @@ const CronJob = require('cron').CronJob;
 const push = require("./push");
 
 function executeCron() {
-  const morning = new CronJob('30 09 * * *', function() {
+  const morning = new CronJob('00 10 * * *', function() {
     push("C62ba46d6214c2bbbc70cb953913d3fbd", `Morningg mn, chúc mọi người một ngày làm việc mới vui vẻ nha!!`);
   }, null, true, 'Asia/Ho_Chi_Minh');
   morning.start();
