@@ -2,7 +2,7 @@ const axios = require("axios");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
-async function getCorona() {
+async function getCoronaZing() {
   const { data } = await axios.get("https://news.zing.vn/dich-viem-phoi-corona.html?");
   const dom = new JSDOM(data);
   const scripts = dom.window.document.querySelectorAll("script");
@@ -23,7 +23,7 @@ async function getCorona() {
   }
 }
 
-async function getCoronaWorld() {
+async function getCorona() {
   let cases = 0;
   let todayCases = 0;
 
@@ -41,7 +41,7 @@ async function getCoronaWorld() {
     }
   }
 
-  return { cases, todayCases }
+  return { cases, source: "Nguồn: WorldOMeters.", todayCases }
 }
 
 async function getCoronaLegacy() {
