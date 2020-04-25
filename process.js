@@ -5,6 +5,7 @@ const doNotify = require("./processors/notifier");
 const getCorona = require("./processors/corona");
 
 let transMode = false;
+let lang = "vi";
 
 async function processMessage(originalMessage, source) {
   const message = transMode ? originalMessage.trim() : originalMessage.trim().toLowerCase();
@@ -20,6 +21,11 @@ async function processMessage(originalMessage, source) {
   }
 
   if (transMode) {
+    if (message.startsWith("dịch ra ")) {
+      lang = message.replace("dịch ra ", "");
+      return `Dạ em sẽ dịch ra ${lang}!`;
+    }
+
     try {
       const translateText = require("./processors/translate");
       return await translateText(message);
