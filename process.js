@@ -8,7 +8,7 @@ let transMode = false;
 let lang = "vi";
 
 async function processMessage(originalMessage, source) {
-  const message = transMode ? originalMessage.trim() : originalMessage.trim().toLowerCase();
+  const message = originalMessage.trim().toLowerCase();
 
   if (message === "bot ơi dịch" || message === "dịch") {
     transMode = true;
@@ -28,7 +28,7 @@ async function processMessage(originalMessage, source) {
 
     try {
       const translateText = require("./processors/translate");
-      return await translateText(message, lang);
+      return await translateText(originalMessage, lang);
     } catch(err) {
       return `Lỗi khi dịch: ${err.toString()}`;
     }
