@@ -28,7 +28,7 @@ async function processMessage(originalMessage, source) {
 
     try {
       const translateText = require("./processors/translate");
-      return await translateText(message);
+      return await translateText(message, lang);
     } catch(err) {
       return `Lỗi khi dịch: ${err.toString()}`;
     }
