@@ -4,8 +4,25 @@ const angi = require("./processors/angi");
 const doNotify = require("./processors/notifier");
 const getCorona = require("./processors/corona");
 
+let transMode = false;
+
 async function processMessage(originalMessage, source) {
   const message = originalMessage.trim().toLowerCase();
+
+  if (message === "bot ơi dịch") {
+    transMode = true;
+    return "Ok!";
+  }
+
+  if (message === "bot ơi ngừng dịch") {
+    transMode = false;
+    return "Ok!";
+  }
+
+  if (transMode) {
+    const translateText = require("./processors/translate");
+    return await translateText(message);
+  }
 
   if (message === "danh sách quán") {
     const list = angi.list();
