@@ -7,21 +7,25 @@ const getCorona = require("./processors/corona");
 let transMode = false;
 
 async function processMessage(originalMessage, source) {
-  const message = originalMessage.trim().toLowerCase();
+  const message = transMode ? originalMessage.trim() : originalMessage.trim().toLowerCase();
 
-  if (message === "bot ơi dịch") {
+  if (message === "bot ơi dịch" || message === "dịch") {
     transMode = true;
-    return "Ok!";
+    return "Ok ạ!";
   }
 
-  if (message === "bot ơi ngừng dịch") {
+  if (message === "bot ơi ngừng dịch" || message === "ngừng dịch" || message === "stop" || message === "im") {
     transMode = false;
-    return "Ok!";
+    return "Ok em sẽ hông dịch nữa!";
   }
 
   if (transMode) {
-    const translateText = require("./processors/translate");
-    return await translateText(message);
+    try {
+      const translateText = require("./processors/translate");
+      return await translateText(message);
+    } catch(err) {
+      return `Lỗi khi dịch: ${err.toString()}`;
+    }
   }
 
   if (message === "danh sách quán") {
