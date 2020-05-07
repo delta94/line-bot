@@ -28,7 +28,7 @@ async function processMessage(originalMessage, source) {
   }
 
   if (message === "stop trash") {
-    transMode = false;
+    trashMode = false;
     return "Ok fine";
   }
 
