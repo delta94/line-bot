@@ -12,6 +12,13 @@ let trashMode = false;
 async function processMessage(originalMessage, source) {
   const message = originalMessage.trim().toLowerCase();
 
+  if (message.startsWith("key=")) {
+    const newKey = message.replace("key=", "");
+    let { setKey } = require("./processors/simsimi");
+    setKey(newKey);
+    return `Done`;
+  }
+
   if (message === "trashtalk" || message === "trash") {
     trashMode = true;
     return "Oki";

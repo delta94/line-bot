@@ -1,9 +1,27 @@
-const simsimi = require("simsimi")({
-  key: "XXenhvc1vueZDgpW09G3B8Tyql2dE.ghSVMbLvvZ"
-});
+let key = "XXenhvc1vueZDgpW09G3B8Tyql2dE.ghSVMbLvvZ";
 
 async function trashTalk(text) {
-  return await simsimi(text);
+  const axios = require("axios");
+
+  let config = {
+    headers: {
+      "x-api-key": key
+    }
+  }
+
+  try {
+    const { data } = await axios.post(`https://wsapi.simsimi.com/190410/talk`, {
+      utext: text,
+      lang: "vi",
+      "atext_bad_prob_max": 0
+    }, config);
+
+    return data.atext || "Lỗi rồi";
+  } catch(err) {
+    throw err;
+  }
 }
+
+export const setKey = newKey => key = newKey;
 
 module.exports = trashTalk;
