@@ -86,7 +86,7 @@ async function processMessage(originalMessage, source) {
     return `Tổng số ca nhiễm Corona ở Việt Nam là ${cases}. ${source}.`;
   }
 
-  if (message === "salary" || message.includes("tiền") || message.includes("lương")) {
+  if (message === "salary" || message === "tiền" || message === "lương") {
     const salary = require("./processors/salary");
     const days = salary();
     return `Còn ${days} ngày nữa mới tới ngày được nhận lương mọi người ạ :cry:`;
