@@ -92,6 +92,10 @@ async function processMessage(originalMessage, source) {
     return `Còn ${days} ngày nữa mới tới ngày được nhận lương mọi người ạ :cry:`;
   }
 
+  if (message === "...") {
+    return `Request failed with status code 429 Too Many Requests`;
+  }
+
   if (
     (message.includes("bot") || message.includes("brown")) &&
     /ngu|gà|chó|cc|cl|đm|đcm|cút|óc/.test(message)
