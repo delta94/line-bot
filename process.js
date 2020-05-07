@@ -49,7 +49,11 @@ async function processMessage(originalMessage, source) {
       const translateText = require("./processors/translate");
       return await translateText(originalMessage, lang);
     } catch(err) {
-      return `Lỗi khi dịch: ${err.toString()}`;
+      if (err.response.status === 429) {
+        trashMode = false;
+        return `Hôm nay trashtalk thế là đủ rồi, mai mình tiếp nhé, Bot hiền lại đây ạ :)`
+      }
+      return "Chat chậm chậm thôi chứ bot hem theo kịp";
     }
   }
 

@@ -16,7 +16,7 @@ async function trashTalk(text) {
       "atext_bad_prob_max": 0.5
     }, config);
 
-    return data && data.atext || "Lỗi rồi";
+    return data && data.atext || "Chat chậm chậm thôi chứ bot hem theo kịp";
   } catch(err) {
     throw err;
   }
