@@ -46,6 +46,15 @@ async function processMessage(originalMessage, source) {
     }
   }
 
+  if (trashMode) {
+    try {
+      const trashText = require("./processors/trashTalk");
+      return await trashText(originalMessage);
+    } catch(err) {
+      return `Lỗi khi dịch: ${err.toString()}`;
+    }
+  }
+
   if (message === "danh sách quán") {
     const list = angi.list();
     return `Danh sách quán nè: ${list}`;
