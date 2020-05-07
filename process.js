@@ -14,8 +14,8 @@ async function processMessage(originalMessage, source) {
 
   if (message.startsWith("key=")) {
     const newKey = message.replace("key=", "");
-    let { setKey } = require("./processors/simsimi");
-    setKey(newKey);
+    let trashModule = require("./processors/simsimi");
+    trashModule.setKey(newKey);
     return `Done`;
   }
 
@@ -55,8 +55,8 @@ async function processMessage(originalMessage, source) {
 
   if (trashMode) {
     try {
-      const trashText = require("./processors/simsimi");
-      return await trashText(originalMessage);
+      const trashModule = require("./processors/simsimi");
+      return await trashModule.trashTalk(originalMessage);
     } catch(err) {
       return `Lỗi khi dịch: ${err.toString()}`;
     }

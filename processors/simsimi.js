@@ -16,12 +16,13 @@ async function trashTalk(text) {
       "atext_bad_prob_max": 0
     }, config);
 
-    return data.atext || "Lỗi rồi";
+    return data && data.atext || "Lỗi rồi";
   } catch(err) {
     throw err;
   }
 }
 
-module.exports.setKey = newKey => key = newKey;
-
-module.exports = trashTalk;
+module.exports = {
+  trashTalk,
+  setKey
+};
