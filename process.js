@@ -7,8 +7,15 @@ const getCorona = require("./processors/corona");
 let transMode = false;
 let lang = "vi";
 
+let trashMode = false;
+
 async function processMessage(originalMessage, source) {
   const message = originalMessage.trim().toLowerCase();
+
+  if (message === "trashtalk" || message === "trash") {
+    trashMode = true;
+    return "Oki";
+  }
 
   if (message === "bot ơi dịch" || message === "dịch") {
     transMode = true;
@@ -18,6 +25,11 @@ async function processMessage(originalMessage, source) {
   if (message === "bot ơi ngừng dịch" || message === "ngừng dịch" || message === "stop" || message === "im") {
     transMode = false;
     return "Ok em sẽ hông dịch nữa!";
+  }
+
+  if (message === "stop trash") {
+    transMode = false;
+    return "Ok fine";
   }
 
   if (transMode) {
