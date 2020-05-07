@@ -86,6 +86,12 @@ async function processMessage(originalMessage, source) {
     return `Tổng số ca nhiễm Corona ở Việt Nam là ${cases}. ${source}.`;
   }
 
+  if (message === "salary" || message.includes("tiền") || message.includes("lương")) {
+    const salary = require("./processors/salary");
+    const days = salary();
+    return `Còn ${days} nữa mới tới ngày được nhận lương mọi người ạ :(`;
+  }
+
   if (
     (message.includes("bot") || message.includes("brown")) &&
     /ngu|gà|chó|cc|cl|đm|đcm|cút|óc/.test(message)
