@@ -48,7 +48,7 @@ async function processMessage(originalMessage, source) {
 
   if (trashMode) {
     try {
-      const trashText = require("./processors/trashTalk");
+      const trashText = require("./processors/simsimi");
       return await trashText(originalMessage);
     } catch(err) {
       return `Lỗi khi dịch: ${err.toString()}`;
