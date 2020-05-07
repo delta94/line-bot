@@ -22,6 +22,10 @@ async function trashTalk(text) {
   }
 }
 
+function setKey(newKey) {
+  key = newKey;
+}
+
 module.exports = {
   trashTalk,
   setKey
