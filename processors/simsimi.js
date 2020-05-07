@@ -22,6 +22,6 @@ async function trashTalk(text) {
   }
 }
 
-export const setKey = newKey => key = newKey;
+module.exports.setKey = newKey => key = newKey;
 
 module.exports = trashTalk;
