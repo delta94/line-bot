@@ -76,8 +76,8 @@ app.listen(PORT, () =>
   console.log(`Webhook server is listening on port ${PORT}.`)
 );
 
-// const coronaInterval = require("./processors/coronaReal");
-// coronaInterval();
+const coronaInterval = require("./processors/coronaReal");
+coronaInterval();
 
 const executeCron = require("./processors/cron");
 executeCron();
