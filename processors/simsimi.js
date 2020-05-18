@@ -12,8 +12,7 @@ async function trashTalk(text) {
   try {
     const { data } = await axios.post(`https://wsapi.simsimi.com/190410/talk`, {
       utext: text,
-      lang: "vi",
-      "atext_bad_prob_max": 0.5
+      lang: "vi"
     }, config);
 
     return data && data.atext || "Chat chậm chậm thôi chứ bot hem theo kịp";

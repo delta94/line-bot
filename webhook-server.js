@@ -22,10 +22,35 @@ app.post("/webhook", line.middleware(config), (req, res) => {
     const responseMessage = await processMessage(event.message.text, event.source);
     if (responseMessage) {
       const client = new line.Client(config);
-      return client.replyMessage(event.replyToken, {
-        type: "text",
-        text: responseMessage
-      });
+
+      function getResponseMsg(m) {
+        if (typeof m === "string") {
+          return {
+            type: "text",
+            text: m
+          };
+        }
+        if (m.type) {
+          if (m.type === "image") {
+            return {
+              type: m.type,
+              originalContentUrl: m.image,
+              previewImageUrl: m.image,
+              sender: m.sender || null
+            };
+          }
+
+          return {
+            type: m.type,
+            text: m.text || "Null",
+            sender: m.sender || null
+          };
+        }
+      }
+
+      const f = Array.isArray(responseMessage) ? responseMessage.map(r => getResponseMsg(r)) : getResponseMsg(responseMessage);
+
+      return client.replyMessage(event.replyToken, f);
     }
 
     return null;
@@ -51,8 +76,8 @@ app.listen(PORT, () =>
   console.log(`Webhook server is listening on port ${PORT}.`)
 );
 
-const coronaInterval = require("./processors/coronaReal");
-coronaInterval();
+// const coronaInterval = require("./processors/coronaReal");
+// coronaInterval();
 
 const executeCron = require("./processors/cron");
 executeCron();
