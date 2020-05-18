@@ -248,7 +248,7 @@ async function processMessage(originalMessage, source) {
     try {
       const name = await utils.getName(source.userId);
       const time = message.replace("bot ơi gọi tao họp lúc ", "");
-      await doNotify(source.userId, time);
+      await doNotify(name, time);
 
       return `Ok, noted nha ${name}`;
     } catch (err) {

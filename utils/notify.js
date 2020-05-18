@@ -1,9 +1,9 @@
 const axios = require("axios");
 const qs = require("querystring");
 
-function sendNotify(msg) {
+function sendNotify(msg, token = "ppbeJBiPP6VpdbNY5HfnN7N8lssX5gl5X2k8obOYNlj") {
   const config = {
-    headers: { Authorization: `Bearer ppbeJBiPP6VpdbNY5HfnN7N8lssX5gl5X2k8obOYNlj` }
+    headers: { Authorization: `Bearer ${token}` }
   };
   const obj = {
     message: msg
