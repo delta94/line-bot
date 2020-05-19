@@ -1,7 +1,7 @@
 const utils = require("./utils/utils");
 
 const angi = require("./processors/angi");
-const doNotify = require("./processors/notifier");
+const notifier = require("./processors/notifier");
 const getCorona = require("./processors/corona");
 
 let transMode = false;
@@ -244,13 +244,37 @@ async function processMessage(originalMessage, source) {
     return `Mình đi ăn ${item} nha mọi người!`;
   }
 
-  if (message.startsWith("bot ơi gọi tao họp lúc ")) {
+  if (message.startsWith("bot ơi") && /gọi|nhắc|kêu/.test(message)) {
     try {
       const name = await utils.getName(source.userId);
-      const time = message.replace("bot ơi gọi tao họp lúc ", "");
-      await doNotify(name, time);
+      notifier.addNotice(message, name);
+      return [
+        `Ok, noted nha ${name}`,
+        {
+          type: "text",
+          text: `Chat 'todo' để xem todo list của bạn nha :)`,
+          sender: {
+            name: "Cony",
+            iconUrl: "https://i.pinimg.com/originals/30/45/54/3045548af6f0524ba575196e9861861c.png"
+          }
+        },
+      ];
+    } catch (err) {
+      return "Chưa vô add friend với Brown thì đừng có gọi, hứ!";
+    }
+  }
 
-      return `Ok, noted nha ${name}`;
+  if (message === "todo") {
+    try {
+      const name = await utils.getName(source.userId);
+      return {
+        type: "text",
+        text: notifier.getNotice(name),
+        sender: {
+          name: "Cony",
+          iconUrl: "https://i.pinimg.com/originals/30/45/54/3045548af6f0524ba575196e9861861c.png"
+        }
+      };
     } catch (err) {
       return "Chưa vô add friend với Brown thì đừng có gọi, hứ!";
     }
