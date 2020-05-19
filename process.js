@@ -283,10 +283,7 @@ async function processMessage(originalMessage, source) {
 
   if (message === "bot" || message === "jarvis" || message === "brown" || message === "lscpu" || message === "free") {
     const os = require("os");
-    return `
-Free Memory: ${os.totalmem() / 1024 / 1024}
-CPU Usage: ${process.cpuUsage().toString()}
-`;
+    return `Free Memory: ${os.totalmem() / 1024 / 1024}\nCPU Usage: User ${process.cpuUsage().user} / System ${process.cpuUsage().system}`;
   }
 
   if (message === "corona") {
