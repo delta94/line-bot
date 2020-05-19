@@ -245,7 +245,7 @@ async function processMessage(originalMessage, source) {
   }
 
   if (message.startsWith("bot ơi") && /gọi|nhắc|kêu/.test(message)
-      || message.startsWith("todo") || message.startsWith("add") || message.startsWith("atd")) {
+      || message.startsWith("add") || message.startsWith("atd")) {
     try {
       const name = await utils.getName(source.userId);
       notifier.addNotice(message, name);
@@ -281,13 +281,12 @@ async function processMessage(originalMessage, source) {
     }
   }
 
-  if (message === "bot" || message === "jarvis" || message === "brown") {
-    try {
-      const name = await utils.getName(source.userId);
-      return `Dạ, ${name} gọi em ạ?`;
-    } catch(err) {
-      return null;
-    }
+  if (message === "bot" || message === "jarvis" || message === "brown" || message === "lscpu" || message === "free") {
+    const os = require("os");
+    return `
+Free Memory: ${os.totalmem() / 1024 / 1024}
+CPU Usage: ${process.cpuUsage().toString()}
+`;
   }
 
   if (message === "corona") {
@@ -309,10 +308,6 @@ async function processMessage(originalMessage, source) {
         }
       },
     ];
-  }
-
-  if (message === "...") {
-    return `Request failed with status code 429 Too Many Requests`;
   }
 
   if (

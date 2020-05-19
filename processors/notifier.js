@@ -2,11 +2,14 @@ const notify = require("../utils/notify");
 const utils = require("../utils/utils");
 
 function getContentAndTimeFromMsg(originalStr) {
-  if (/todo|atd|add|todos/.test(originalStr)) {
+  if (/atd|add/.test(originalStr)) {
     const result = originalStr.split(" ");
+    const time = result[result.length - 1];
+    result.shift();
+    result.pop();
     return {
-      content: result[1],
-      time: result[2]
+      content: result.join(" "),
+      time
     };
   }
 
