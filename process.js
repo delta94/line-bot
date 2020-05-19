@@ -271,7 +271,7 @@ async function processMessage(originalMessage, source) {
     }
   }
 
-  if (message.startsWith("setToken")) {
+  if (message.includes("setToken")) {
     const trueMsg = originalMessage.replace("setToken ", "");
     const arr = trueMsg.split(" ");
     const token = arr[arr.length - 1];
