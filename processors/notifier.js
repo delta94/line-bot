@@ -1,9 +1,6 @@
 const notify = require("../utils/notify");
 const utils = require("../utils/utils");
 
-const os = require("os");
-console.log(process.cpuUsage());
-
 function getContentAndTimeFromMsg(originalStr) {
   if (/atd|add/.test(originalStr)) {
     const result = originalStr.split(" ");
