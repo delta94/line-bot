@@ -272,9 +272,13 @@ async function processMessage(originalMessage, source) {
   }
 
   if (message.startsWith("setToken")) {
-    const arr = message.split(" ");
-    notifier.setToken(arr[1], arr[2]);
-    return `Đã set token cho ${arr[1]}`;
+    const trueMsg = originalMessage.replace("setToken ", "");
+    const arr = trueMsg.split(" ");
+    const token = arr[arr.length - 1];
+    arr.pop();
+    const name = arr.join(" ");
+    notifier.setToken(name, token);
+    return `Đã set token cho ${name} là ${token}`;
   }
 
   if (message === "bot" || message === "jarvis" || message === "brown" || message === "lscpu" || message === "free") {
