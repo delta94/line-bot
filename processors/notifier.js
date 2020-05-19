@@ -33,17 +33,16 @@ function getContentAndTimeFromMsg(originalStr) {
 }
 
 function doNotify(name, content, time) {
+  const token = tokenObj[name] || null;
+  const betaToken = "VLzUdQAb5AgMUqpOcO4TK9t6L3dtOOQQxKdcC3EbJyD";
+
   try {
     const duration = utils.getDurationHHmm(time);
 
     setTimeout(() => {
-      notify(`${name} ơi, tới giờ "${content}" rồi bạn toy ơi!!`, "VLzUdQAb5AgMUqpOcO4TK9t6L3dtOOQQxKdcC3EbJyD");
+      notify(`${name} ơi, tới giờ "${content}" rồi bạn ơi!!`, token || betaToken);
       removeNotice(name, content, time);
     }, duration);
-
-    setTimeout(() => {
-      notify("Lẹ lẹ plz!", "VLzUdQAb5AgMUqpOcO4TK9t6L3dtOOQQxKdcC3EbJyD");
-    }, duration + 2000);
 
     return true;
   } catch (err) {
@@ -80,8 +79,24 @@ function getNotice(name) {
   if (!arr.length) {
     return "Không có";
   }
-
-  return arr.join('\r\n');
+  const tArr = arr.map(e => e.split(" - "));
+  tArr.sort((a, b) => {
+    if (a[1] > b[1]) {
+      return 1;
+    }
+    if (a[1] < b[1]) {
+      return -1;
+    }
+    return 0;
+  });
+  const fArr = tArr.map(e => `${e[0]} lúc ${e[1]}`);
+  return fArr.join('\r\n');
 }
 
-module.exports = { addNotice, getNotice };
+tokenObj = {};
+
+function setToken(name, token) {
+  tokenObj[name] = token;
+}
+
+module.exports = { addNotice, getNotice, setToken };

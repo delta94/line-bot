@@ -249,17 +249,7 @@ async function processMessage(originalMessage, source) {
     try {
       const name = await utils.getName(source.userId);
       notifier.addNotice(message, name);
-      return [
-        `Ok, noted nha ${name}`,
-        {
-          type: "text",
-          text: `Chat 'todo' để xem todo list của bạn nha :)`,
-          sender: {
-            name: "Cony",
-            iconUrl: "https://i.pinimg.com/originals/30/45/54/3045548af6f0524ba575196e9861861c.png"
-          }
-        },
-      ];
+      return `Ok, noted nha ${name}`;
     } catch (err) {
       return "Chưa vô add friend với Brown thì đừng có gọi, hứ!";
     }
@@ -279,6 +269,12 @@ async function processMessage(originalMessage, source) {
     } catch (err) {
       return "Chưa vô add friend với Brown thì đừng có gọi, hứ!";
     }
+  }
+
+  if (message.startsWith("setToken")) {
+    const arr = message.split(" ");
+    notifier.setToken(arr[1], arr[2]);
+    return `Đã set token cho ${arr[1]}`;
   }
 
   if (message === "bot" || message === "jarvis" || message === "brown" || message === "lscpu" || message === "free") {
