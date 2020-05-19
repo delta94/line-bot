@@ -2,6 +2,14 @@ const notify = require("../utils/notify");
 const utils = require("../utils/utils");
 
 function getContentAndTimeFromMsg(originalStr) {
+  if (/todo|atd|add|todos/.test(originalStr)) {
+    const result = originalStr.split(" ");
+    return {
+      content: result[1],
+      time: result[2]
+    };
+  }
+
   const str = originalStr
     .replace("bot ơi nhắc ", "")
     .replace("bot ơi gọi ", "")
@@ -18,7 +26,7 @@ function getContentAndTimeFromMsg(originalStr) {
   return {
     content,
     time
-  }
+  };
 }
 
 function doNotify(name, content, time) {

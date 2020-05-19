@@ -244,7 +244,8 @@ async function processMessage(originalMessage, source) {
     return `Mình đi ăn ${item} nha mọi người!`;
   }
 
-  if (message.startsWith("bot ơi") && /gọi|nhắc|kêu/.test(message)) {
+  if (message.startsWith("bot ơi") && /gọi|nhắc|kêu/.test(message)
+      || message.startsWith("todo") || message.startsWith("add") || message.startsWith("atd")) {
     try {
       const name = await utils.getName(source.userId);
       notifier.addNotice(message, name);
