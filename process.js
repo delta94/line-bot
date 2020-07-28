@@ -64,6 +64,17 @@ async function processMessage(originalMessage, source) {
     ];
   }
 
+  if (message === "advice" || message === "advise") {
+    const getAdvice = require("./processors/advice");
+    const advice = await getAdvice();
+    return [
+      {
+        type: "text",
+        text: advice
+      }
+    ];
+  }
+
   if (message.startsWith("cony")) {
     return [
       {
