@@ -53,24 +53,15 @@ async function processMessage(originalMessage, source) {
     ]
   }
 
-  if (message === "hey") {
+  if (message === "hey" || message === "coder") {
     const getHey = require("./processors/hey");
     const hey = await getHey();
-    if (hey.includes("mp4")) {
-      return [
-        {
-          type: "video",
-          video: hey
-        }
-      ]
-    } else {
-      return [
-        {
-          type: "image",
-          image: hey
-        }
-      ]
-    }
+    return [
+      {
+        type: "text",
+        text: hey
+      }
+    ];
   }
 
   if (message.startsWith("cony")) {

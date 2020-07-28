@@ -1,6 +1,6 @@
 const getCorona = require("./corona");
 
-let currentCases = 430;
+let currentCases = 431;
 
 async function coronaLive() {
   const { cases, source } = await getCorona();
