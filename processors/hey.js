@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 async function getHey() {
-  const { data } = await axios.get("http://yerkee.com/api/fortune/computers");
+  const { data } = await axios.get("http://yerkee.com/api/fortune/people");
   return data.fortune;
 }
 

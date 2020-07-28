@@ -53,7 +53,7 @@ async function processMessage(originalMessage, source) {
     ]
   }
 
-  if (message === "hey" || message === "coder") {
+  if (message === "hey" || message === "quote") {
     const getHey = require("./processors/hey");
     const hey = await getHey();
     return [
