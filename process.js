@@ -49,14 +49,6 @@ async function processMessage(originalMessage, source) {
       {
         type: "image",
         image: memeImage
-      },
-      {
-        type: "text",
-        text: "Làm không lo làm meme cái gì pa ơi?",
-        sender: {
-          name: "Cony",
-          iconUrl: "https://i.pinimg.com/originals/30/45/54/3045548af6f0524ba575196e9861861c.png"
-        }
       }
     ]
   }
@@ -274,7 +266,11 @@ async function processMessage(originalMessage, source) {
     return `Đã set token cho ${name} là ${token}`;
   }
 
-  if (message === "bot" || message === "jarvis" || message === "brown" || message === "lscpu" || message === "free") {
+  if (message === "bot" || message === "jarvis" || message === "brown" ) {
+    return "Dạ!";
+  }
+
+  if (message === "health" || message === "free") {
     const os = require("os");
     const load = os.loadavg().join(" ");
     return `Free Memory: ${os.freemem() / 1024 / 1024}/${os.totalmem() / 1024 / 1024}MB\nCPU Usage: User ${process.cpuUsage().user} / System ${process.cpuUsage().system}\nAverage Load: ${load}`;
@@ -289,7 +285,7 @@ async function processMessage(originalMessage, source) {
     const salary = require("./processors/salary");
     const days = salary();
     return [
-      `Còn ${days} ngày nữa mới tới ngày được nhận lương mọi người ạ :cry:`,
+      `Còn ${days} ngày nữa mới tới ngày được nhận lương mọi người ạ`,
       {
         type: "text",
         text: days >= 3 ? "Haizzzzzzza..." : "Yeyeeeeee...",
