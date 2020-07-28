@@ -40,6 +40,15 @@ app.post("/webhook", line.middleware(config), (req, res) => {
             };
           }
 
+          if (m.type === "video") {
+            return {
+              type: m.type,
+              originalContentUrl: m.video,
+              previewImageUrl: m.video,
+              sender: m.sender || null
+            }
+          }
+
           return {
             type: m.type,
             text: m.text || "Null",
