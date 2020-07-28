@@ -89,13 +89,6 @@ async function processMessage(originalMessage, source) {
     }
   }
 
-  if (message.startsWith("key=")) {
-    const newKey = message.replace("key=", "");
-    let trashModule = require("./processors/simsimi");
-    trashModule.setKey(newKey);
-    return `Done`;
-  }
-
   if (message === "trashtalk" || message === "trash") {
     trashMode = true;
     return "Để em gọi James ra trashtalk ạ!";
