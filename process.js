@@ -306,6 +306,11 @@ async function processMessage(originalMessage, source) {
   if (message === "salary" || message === "tiền" || message === "lương" || message === "luong") {
     const salary = require("./processors/salary");
     const days = salary();
+
+    if (days <= 0) {
+      return "Nhận lương rồi mà hỏi hỏi cái nồi :sleep:"
+    }
+
     return [
       `Còn ${days} ngày nữa mới tới ngày được nhận lương mọi người ạ`,
       {
