@@ -2,7 +2,7 @@ const CronJob = require('cron').CronJob;
 const notify = require("../utils/notify");
 
 function executeCron() {
-  const morning = new CronJob('00 06 * * *', function() {
+  const morning = new CronJob('30 06 * * *', function() {
     notify(`Morningg mn, chúc mọi người một ngày làm việc mới vui vẻ nha!!`);
   }, null, true, 'Asia/Ho_Chi_Minh');
   morning.start();
@@ -12,8 +12,8 @@ function executeCron() {
   }, null, true, 'Asia/Ho_Chi_Minh');
   lunch.start();
 
-  const dinner = new CronJob('30 18 * * *', function() {
-    notify(`6 giờ 30 chiều rồi nè, về đi ăn tối thôi mn!`);
+  const dinner = new CronJob('45 17 * * *', function() {
+    notify(`Sắp 6 giờ chiều rồi nè, về đi ăn tối/đi nhậu thôi mn!`);
   }, null, true, 'Asia/Ho_Chi_Minh');
   dinner.start();
 }
