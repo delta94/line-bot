@@ -308,7 +308,18 @@ async function processMessage(originalMessage, source) {
     const days = salary();
 
     if (days <= 0) {
-      return "Nhận lương rồi mà hỏi hỏi cái nồi :sleep:"
+      const realDays = 29 - days
+      return [
+        `Còn ${realDays} ngày nữa mới tới ngày được nhận lương mọi người ạ`,
+        {
+          type: "text",
+          text: realDays >= 3 ? "Haizzzzzzza..." : "Yeyeeeeee...",
+          sender: {
+            name: "James",
+            iconUrl: "https://i.imgur.com/ul8y4WQ.png"
+          }
+        },
+      ];
     }
 
     return [
