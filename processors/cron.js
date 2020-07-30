@@ -3,12 +3,12 @@ const notify = require("../utils/notify");
 
 function executeCron() {
   const morning = new CronJob('30 06 * * *', function() {
-    notify(`Morningg mn, chúc mọi người một ngày làm việc mới vui vẻ nha!!`);
+    notify(`Morningg mn, chúc mọi người một ngày làm việc mới vui vẻ nha ahihi`);
   }, null, true, 'Asia/Ho_Chi_Minh');
   morning.start();
 
   const lunch = new CronJob('50 11 * * *', function() {
-    notify(`Trưa tới rồi, mình đi ăn trưa nha mn!! Hỏi Brown ăn gì nếu chưa biết ăn gì nha!!`);
+    notify(`Trưa tới rồi, mình đi ăn trưa nha mn!! Nếu bạn không ở toà nhà STC thì hỏi Brown "ăn gì" nếu chưa biết ăn gì nha!!`);
   }, null, true, 'Asia/Ho_Chi_Minh');
   lunch.start();
 
