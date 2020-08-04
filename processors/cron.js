@@ -8,12 +8,12 @@ function executeCron() {
   morning.start();
 
   const lunch = new CronJob('50 11 * * *', function() {
-    notify(`Trưa tới rồi, mình đi ăn trưa nha mn!! Nếu bạn không ở toà nhà STC thì hỏi Brown "ăn gì" nếu chưa biết ăn gì nha!!`);
+    notify(`Trưa tới rồi, mình đi ăn trưa nha mn!!`);
   }, null, true, 'Asia/Ho_Chi_Minh');
   lunch.start();
 
   const dinner = new CronJob('45 17 * * *', function() {
-    notify(`Sắp 6 giờ chiều rồi nè, về đi ăn tối/đi nhậu thôi mn!`);
+    notify(`Sắp 6 giờ chiều rồi nè, về đi ăn tối thôi mn!`);
   }, null, true, 'Asia/Ho_Chi_Minh');
   dinner.start();
 }
