@@ -12,6 +12,13 @@ function executeCron() {
   }, null, true, 'Asia/Ho_Chi_Minh');
   lunch.start();
 
+  const lunch2 = new CronJob('00 55 11 * * 1-5', function() {
+    const angi = require("./angi");
+    const item = angi.get();
+    notify(`Mình đi ăn ${item} nha mọi người!`);
+  }, null, true, 'Asia/Ho_Chi_Minh');
+  lunch2.start();
+
   const dinner = new CronJob('00 45 17 * * 1-5', function() {
     notify(`Sắp 6 giờ chiều rồi nè, về đi ăn tối thôi mn!`);
   }, null, true, 'Asia/Ho_Chi_Minh');
