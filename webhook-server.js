@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require("express");
 const line = require("@line/bot-sdk");
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
+
 const processMessage = require("./process");
 
 const config = {
