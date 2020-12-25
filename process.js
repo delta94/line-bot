@@ -153,6 +153,16 @@ async function processMessage(originalMessage, source) {
     ]
   }
 
+  if (message === "news") {
+    const news = require("./processors/news")
+    return await news()
+  }
+
+  if (message === "hn") {
+    const hn = require("./processors/hn")
+    return await hn()
+  }
+
   if (transMode) {
     if (message.startsWith("dịch ra ")) {
       lang = message.replace("dịch ra ", "");

@@ -13,6 +13,11 @@ const PORT = process.env.PORT || 7777;
 
 const app = express();
 
+app.get("/notify", (req, res) => {
+  const notify = require("../utils/notify");
+  notify(req.query.text);
+})
+
 app.post("/webhook", line.middleware(config), (req, res) => {
   async function handleEvent(event) {
     if (event.type !== "message" || event.message.type !== "text") {
