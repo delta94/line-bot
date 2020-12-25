@@ -12,7 +12,7 @@ function executeCron() {
     notify(`Đọc tin tức buổi sáng nè mọi người :D`);
     hn().then(d => notify(d));
   }, null, true, 'Asia/Ho_Chi_Minh');
-  morning2.start();
+  // morning2.start();
 
   const lunch = new CronJob('00 50 11 * * 1-5', function() {
     notify(`Trưa tới rồi, mình đi ăn trưa nha mn!!`);
