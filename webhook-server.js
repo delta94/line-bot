@@ -16,6 +16,7 @@ const app = express();
 app.get("/notify", (req, res) => {
   const notify = require("../utils/notify");
   notify(req.query.text);
+  res.send("OK")
 })
 
 app.post("/webhook", line.middleware(config), (req, res) => {
