@@ -5,7 +5,7 @@ async function hn() {
   const items = data.items
   let msg = ""
   for (const i of items) {
-    msg += "-> " + i.title + "\n" + ` ${i.link}` + " \n"
+    msg += "-> " + i.title + "\n " + ` ${i.link}` + " \n"
   }
   return msg
 }
