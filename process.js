@@ -200,6 +200,17 @@ async function processMessage(originalMessage, source) {
   }
 
   if (trashMode) {
+    if (message === "chửi nam" || message === "chửi scott") {
+      return {
+        type: "text",
+        text: `mẹ mày nam . con chó ki ki`,
+        sender: {
+          name: "James",
+          iconUrl: "https://i.imgur.com/ul8y4WQ.png"
+        }
+      }
+    }
+
     try {
       const trashModule = require("./processors/simsimi");
       const trashText =  await trashModule.trashTalk(originalMessage);
