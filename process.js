@@ -237,7 +237,7 @@ async function processMessage(originalMessage, source) {
 
       return {
         type: "text",
-        text: `Hmm...`,
+        text: message,
         sender: {
           name: "James",
           iconUrl: "https://i.imgur.com/ul8y4WQ.png"
