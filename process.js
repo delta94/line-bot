@@ -317,8 +317,24 @@ async function processMessage(originalMessage, source) {
     const salary = require("./processors/salary");
     const days = salary();
 
-    if (days <= 0) {
-      const realDays = 29 - days
+    if (days === 0) {
+      return [
+        `Hôm nay là ngày nhận lương đó mọi người`,
+        {
+          type: "text",
+          text: "Ting ting..."
+          sender: {
+            name: "James",
+            iconUrl: "https://i.imgur.com/ul8y4WQ.png"
+          }
+        },
+      ];
+    }
+
+    if (days < 0) {
+      const moment = require("moment");
+      const d = moment().daysInMonth() === 31 ? 2 : 1;
+      const realDays = 29 + d;
       return [
         `Còn ${realDays} ngày nữa mới tới ngày được nhận lương mọi người ạ`,
         {
