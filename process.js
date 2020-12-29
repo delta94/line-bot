@@ -322,7 +322,7 @@ async function processMessage(originalMessage, source) {
         `Hôm nay là ngày nhận lương đó mọi người`,
         {
           type: "text",
-          text: "Ting ting..."
+          text: "Ting ting...",
           sender: {
             name: "James",
             iconUrl: "https://i.imgur.com/ul8y4WQ.png"
