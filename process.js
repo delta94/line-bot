@@ -200,7 +200,7 @@ async function processMessage(originalMessage, source) {
   }
 
   if (trashMode) {
-    if (message === "chửi nam" || message === "chửi scott") {
+    if (message.includes("chửi nam") || message.includes("chửi scott")) {
       return {
         type: "text",
         text: `mẹ mày nam . con chó ki ki`,
